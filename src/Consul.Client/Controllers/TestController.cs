@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MicroService.Consul.HttpClients;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace Consul.Client.Controllers
 {
@@ -12,31 +14,23 @@ namespace Consul.Client.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private IHttpClientFactory _httpClientFactory;
+        private ConsulHttpClient _httpClient;
 
-        public TestController(IHttpClientFactory httpClientFactory)
+        public TestController(ConsulHttpClient httpClient)
         {
-            _httpClientFactory = httpClientFactory;
+            _httpClient = httpClient;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var consulClient = new ConsulClient(c =>
-            {
-                //consul地址
-                c.Address = new Uri("http://localhost:8500");
-            });
-            var services = await consulClient.Health.Service("Consul.Demo");
+            var content = await _httpClient.GetAsync<Wrapper>("Consul.Service", "/api/values");
+            return Ok(content.Data);
+        }
 
-            var client = _httpClientFactory.CreateClient();
-            var service = services.Response[0].Service;
-
-            var url = $"http://{service.Address}:{service.Port}/api/values";
-            var result = await client.GetAsync(url);
-            var content = await result.Content.ReadAsStringAsync();
-
-            return Ok(content);
+        public class Wrapper
+        {
+            public string Data { get; set; }
         }
     }
 }

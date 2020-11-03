@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Consul.Demo.Controllers
+namespace Consul.Service.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -14,7 +14,15 @@ namespace Consul.Demo.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("hello");
+            return Ok(new Wrapper
+            {
+                Data = "hello"
+            });
+        }
+
+        public class Wrapper
+        {
+            public string Data { get; set; }
         }
     }
 }

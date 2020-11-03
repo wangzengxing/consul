@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Consul.Demo
+namespace Consul.Service
 {
     public class Program
     {
@@ -21,7 +21,7 @@ namespace Consul.Demo
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                        .UseUrls("http://*:5000")
+                        .UseUrls("http://192.168.60.15:5000")
                         .ConfigureLogging(logbuilder =>
                         {
                             logbuilder.AddConsole();

@@ -8,5 +8,9 @@
     <PackageReference Include="Consul" Version="1.6.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MicroService.Core\MicroService.Consul.csproj" />
+  </ItemGroup>
+
 
 </Project>

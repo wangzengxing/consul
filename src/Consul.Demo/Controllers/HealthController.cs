@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Consul.Demo.Controllers
+namespace Consul.Service.Controllers
 {
     [Route("[controller]")]
     [ApiController]
