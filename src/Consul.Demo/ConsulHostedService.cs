@@ -18,7 +18,7 @@ namespace Consul.Demo
             _consulOptions = optionsMonitor.CurrentValue;
             _consulClient = new ConsulClient(x =>
             {
-                x.Address = new Uri(_consulOptions.Address);
+                x.Address = new Uri(_consulOptions.ConsulAddress);
             });
         }
 

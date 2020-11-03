@@ -32,11 +32,11 @@ namespace Consul.Demo
             services.Configure<ConsulOptions>(r =>
             {
                 r.ServiceID = "bfa13348-8206-4733-8111-725f9a4055e5";
-                r.ServiceHealthCheck = "http://172.16.76.245:5000/health";
-                r.ServiceAddress = "172.16.76.245";
+                r.ServiceHealthCheck = "http://192.168.60.15:5000/health";
+                r.ServiceAddress = "localhost";
                 r.ServiceName = "Consul.Demo";
                 r.ServicePort = 5000;
-                r.Address = "http://172.16.76.245:8500";
+                r.ConsulAddress = "http://localhost:8500";
             });
         }
 

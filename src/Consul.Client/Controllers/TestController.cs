@@ -25,7 +25,7 @@ namespace Consul.Client.Controllers
             var consulClient = new ConsulClient(c =>
             {
                 //consul地址
-                c.Address = new Uri("http://172.16.76.245:8500");
+                c.Address = new Uri("http://localhost:8500");
             });
             var services = await consulClient.Health.Service("Consul.Demo");
 
