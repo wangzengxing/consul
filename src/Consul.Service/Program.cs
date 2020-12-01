@@ -21,7 +21,6 @@ namespace Consul.Service
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                        .UseUrls("http://*:5000")
                         .ConfigureLogging(logbuilder =>
                         {
                             logbuilder.AddConsole();
